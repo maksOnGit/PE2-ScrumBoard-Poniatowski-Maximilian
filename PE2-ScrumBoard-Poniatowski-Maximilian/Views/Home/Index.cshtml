@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Login Page";
+}
+
+<h1 class="display-4">Select User</h1>
+<form asp-controller="Board" asp-action="Index">
+    <div class="form-group">
+        <label>User</label>
+        <select class="form-control">
+            <option value="">Select User</option>
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+    <a asp-controller="User" asp-action="CreateUser">Not in the list ?</a>
+
+
