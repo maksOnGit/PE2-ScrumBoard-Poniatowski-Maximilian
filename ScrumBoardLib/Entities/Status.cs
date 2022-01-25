@@ -7,5 +7,7 @@ namespace ScrumBoardLib.Entities
     public class Status : BaseModel
     {
         public string StatusName { get; set; }
+        public IEnumerable<ScrumTask> Tasks { get; set; } // navigation
+
     }
 }

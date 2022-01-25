@@ -1,9 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PE2_ScrumBoard_Poniatowski_Maximilian.Data;
+using PE2_ScrumBoard_Poniatowski_Maximilian.Repositories;
+using ScrumBoardLib.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +28,9 @@ namespace PE2_ScrumBoard_Poniatowski_Maximilian
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
+            services.AddDbContext<ScrumBoardDbContext>(options => options.UseSqlServer("name=ConnectionStrings:ScrumBoardDb"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

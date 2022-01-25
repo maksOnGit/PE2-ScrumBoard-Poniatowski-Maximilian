@@ -1,10 +1,12 @@
-﻿
-<form asp-controller="User" asp-action="CreateUserPost">
+﻿@model CreateUserViewModel
+
     <h1>Create new user</h1>
+<form asp-controller="User" asp-action="CreateUserPost" method="post">
+
     <div class="form-group">
-        <label>User name</label>
-        <input class="form-control"/>
-        <span class="text-danger"></span>
+        <label asp-for="UserName">User name</label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Create</button>
 </form>

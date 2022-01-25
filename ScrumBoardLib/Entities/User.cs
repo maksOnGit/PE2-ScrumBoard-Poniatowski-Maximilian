@@ -6,5 +6,7 @@ namespace ScrumBoardLib.Entities
 {
     public class User : BaseModel
     {
+        public string UserName { get; set; }
+        public IEnumerable<ScrumTask> Tasks { get; set; } // navigation
     }
 }

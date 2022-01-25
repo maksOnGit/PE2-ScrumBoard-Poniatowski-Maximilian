@@ -1,5 +1,6 @@
-﻿
-<h1>Welcome Model</h1>
+﻿@model ScrumBoardViewModel
+
+<h1>Welcome @Model.User.UserName.ToUpper().ToString()</h1>
 <a asp-controller="Home" asp-action="Index">Logout</a>
 <p>Here are your tasks, have a productive day.</p>
 <table class="table mt-2">
@@ -10,5 +11,22 @@
                 <th>Done</th>
             </tr>
         </thead>
+        <tbody>
+            <tr>
+                <td>
+                 @foreach (var item in Model.Tasks.Where(t => t.StatusId == 1))
+                 {
 
+                 }
+                </td>
+            </tr>
+        </tbody>
 </table>
+
+<div> row
+    <h2 class="">
+        foreach
+        </h2> col
+    <h2></h2> col
+    <h2></h2> col
+</div>

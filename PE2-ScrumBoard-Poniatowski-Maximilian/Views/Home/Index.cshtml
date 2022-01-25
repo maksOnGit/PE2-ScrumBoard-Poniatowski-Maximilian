@@ -1,12 +1,14 @@
-﻿@{
+﻿@*@{
     ViewData["Title"] = "Login Page";
-}
+}*@
+@model LoginViewModel
+
 
 <h1 class="display-4">Select User</h1>
-<form asp-controller="Board" asp-action="Index">
+<form asp-controller="Board" asp-action="Login" method="post">
     <div class="form-group">
-        <label>User</label>
-        <select class="form-control">
+        <label asp-for="UserId">User</label>
+        <select asp-for="UserId" asp-items="Model.Users" class="form-control">
             <option value="">Select User</option>
         </select>
     </div>
