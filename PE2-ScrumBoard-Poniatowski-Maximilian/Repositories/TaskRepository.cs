@@ -36,7 +36,6 @@ namespace PE2_ScrumBoard_Poniatowski_Maximilian.Repositories
         {
             return await Task.FromResult(_context.Tasks.Where(t => t.Id == id).FirstOrDefault());
         }
-        //TODO Implement in Inteface
         public async Task<bool> Update(ScrumTask task)
         {
             _context.Tasks.Update(task);

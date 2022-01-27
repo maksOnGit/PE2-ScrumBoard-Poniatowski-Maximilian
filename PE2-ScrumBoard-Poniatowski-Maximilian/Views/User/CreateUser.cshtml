@@ -1,4 +1,7 @@
-﻿@model CreateUserViewModel
+﻿@{
+    ViewData["Title"] = "Create User";
+}
+@model CreateUserViewModel
 
     <h1>Create new user</h1>
 <form asp-controller="User" asp-action="CreateUserPost" method="post">

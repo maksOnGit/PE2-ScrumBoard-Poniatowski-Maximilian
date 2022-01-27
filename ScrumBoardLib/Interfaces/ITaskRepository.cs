@@ -11,7 +11,6 @@ namespace ScrumBoardLib.Interfaces
     {
         // delete
         Task<bool> DeleteById(int id);
-
         Task<bool> Update(ScrumTask task);
 
 

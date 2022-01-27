@@ -14,25 +14,26 @@ namespace PE2_ScrumBoard_Poniatowski_Maximilian.Models
         public LoginViewModel(IUserRepository userRepository)
         {
             _userRepository = userRepository;
+
+            users = _userRepository.GetAll().Result.ToList().ConvertAll(u => new SelectListItem { Value = u.Id.ToString(), Text = u.UserName });
         }
 
         public LoginViewModel()
         {
 
         }
-       
+
         [Required(ErrorMessage = "Please select or create a user")]
         public int? UserId { get; set; }
+
+        private IEnumerable<SelectListItem> users = new List<SelectListItem>();
         public IEnumerable<SelectListItem> Users
         {
             get
             {
-                if (_userRepository != null)
-                {
-                    return _userRepository.GetAll().Result.ToList().ConvertAll(u => new SelectListItem { Value = u.Id.ToString(), Text = u.UserName });
-                }
-                return Enumerable.Empty<SelectListItem>();
+                return users;
             }
+            set { users = value; }
         }
 
     }
