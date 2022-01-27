@@ -1,15 +1,15 @@
-﻿
+﻿@model CreateTaskViewModel
+<h1>Create Task</h1>
 <form asp-controller="Board" asp-action="CreateTaskPost">
-    <h1>Create Task</h1>
     <div class="form-group">
-        <label>Task name</label>
-        <input class="form-control"/>
-        <span class="text-danger"></span>
+        <label asp-for="TaskName">Task name</label>
+        <input asp-for="TaskName" class="form-control" />
+        <span asp-validation-for="TaskName" class="text-danger"></span>
     </div>
     <div class="form-group">
-        <label>Task Description</label>
-        <input class="form-control"/>
+        <label asp-for="TaskDescription">Task Description</label>
+        <input asp-for="TaskDescription" class="form-control" />
     </div>
     <button type="submit" class="btn-primary btn">Create</button>
-    
+
 </form>

@@ -9,7 +9,7 @@ using PE2_ScrumBoard_Poniatowski_Maximilian.Data;
 namespace PE2_ScrumBoard_Poniatowski_Maximilian.Migrations
 {
     [DbContext(typeof(ScrumBoardDbContext))]
-    [Migration("20220125121207_InitialMigration")]
+    [Migration("20220126221931_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -4,29 +4,62 @@
 <a asp-controller="Home" asp-action="Index">Logout</a>
 <p>Here are your tasks, have a productive day.</p>
 <table class="table mt-2">
-        <thead>
-            <tr>
-                <th>Open</th>
-                <th>In Progress</th>
-                <th>Done</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                 @foreach (var item in Model.Tasks.Where(t => t.StatusId == 1))
-                 {
+    <thead>
+        <tr>
+            <th>Open</th>
+            <th>In Progress</th>
+            <th>Done</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @foreach (var item in Model.Tasks.Where(t => t.StatusId == 1 && t.UserId == Model.User.Id))
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TaskName</h5>
+                            <p class="card-text">@item.TaskDescription</p>
+                            <a asp-controller="Board" asp-action="StartTask" asp-route-id="@item.Id" class="btn btn-primary">Start Task</a>
+                        </div>
+                    </div>
+                }
+            </td>
+            <td>
+                @foreach (var item in Model.Tasks.Where(t => t.StatusId == 2 && t.UserId == Model.User.Id))
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TaskName</h5>
+                            <p class="card-text">@item.TaskDescription</p>
+                            <a asp-controller="Board" asp-action="FinishTask" asp-route-id="@item.Id" class="btn btn-primary">Done</a>
+                        </div>
+                    </div>
+                }
+            </td>
+            <td>
+                @foreach (var item in Model.Tasks.Where(t => t.StatusId == 3 && t.UserId == Model.User.Id))
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.TaskName</h5>
+                            <p class="card-text">@item.TaskDescription</p>
+                            <a asp-controller="Board" asp-action="DeleteTask" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                }
+            </td>
 
-                 }
-                </td>
-            </tr>
-        </tbody>
+        </tr>
+    </tbody>
 </table>
 
-<div> row
+<a asp-controller="Board" asp-action="CreateTask">Create Task</a>
+
+@*<div> row
     <h2 class="">
-        foreach
-        </h2> col
+    foreach
+    </h2> col
     <h2></h2> col
     <h2></h2> col
-</div>
+    </div>*@

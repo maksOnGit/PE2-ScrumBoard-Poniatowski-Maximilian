@@ -2,6 +2,7 @@
 using ScrumBoardLib.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,8 +20,9 @@ namespace PE2_ScrumBoard_Poniatowski_Maximilian.Models
         {
 
         }
-
-        public int UserId { get; set; }
+       
+        [Required(ErrorMessage = "Please select or create a user")]
+        public int? UserId { get; set; }
         public IEnumerable<SelectListItem> Users
         {
             get
@@ -32,5 +34,6 @@ namespace PE2_ScrumBoard_Poniatowski_Maximilian.Models
                 return Enumerable.Empty<SelectListItem>();
             }
         }
+
     }
 }

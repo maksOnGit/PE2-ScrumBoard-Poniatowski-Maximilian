@@ -1,6 +1,6 @@
-﻿@*@{
+﻿@{
     ViewData["Title"] = "Login Page";
-}*@
+}
 @model LoginViewModel
 
 
@@ -11,6 +11,7 @@
         <select asp-for="UserId" asp-items="Model.Users" class="form-control">
             <option value="">Select User</option>
         </select>
+        <span asp-validation-for="UserId" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
