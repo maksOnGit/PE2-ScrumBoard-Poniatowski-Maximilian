@@ -7,22 +7,32 @@
 @*I implemented a little "view" for when u try to access .../Board/Overview without being loged in.*@
 @if (@Model.User == null)
 {
-    <h1>Fatal Error!</h1>
-    <h2>U need to log in, before coming here!</h2>
-    <a asp-controller="Home" asp-action="Index" class="btn btn-warning">OK</a>
+    
+    
+
+    <div class="jumbotron">
+        <h1 class="display-4">Fatal Error!</h1>
+        <hr class="my-1">
+        <p class="display-3">U need to log in, before coming here!</p>
+        <p></p>
+        <p class="lead mt-2">
+            <a class="btn btn-lg btn-warning" asp-controller="Home" asp-action="Index" role="button">Go to the login screen</a>
+        </p>
+    </div>
 }
 else
 {
 
-    <h1>Welcome @Model.User.UserName.ToUpper().ToString()</h1>
+    <h1 class="display-4 ink">Welcome @Model.User.UserName.ToString()</h1>
     <a asp-controller="Board" asp-action="Logout">Logout</a>
-    <p>Here are your tasks, have a productive day.</p>
+    <p class="labels">Here are your tasks, have a productive day.</p>
+
     <table class="table mt-2">
         <thead>
             <tr>
-                <th width="33%" class="text-center">Open</th>
-                <th width="33%" class="text-center">In Progress</th>
-                <th width="33%" class="text-center">Done</th>
+                <th width="33%" class="h2 text-center border-white border-top-0 coltitle">OPEN (@Model.Tasks.Where(t => t.StatusId == 1 && t.UserId == Model.User.Id).Count())</th>
+                <th width="33%" class="h2 text-center border-white border-top-0 border-left border-right coltitle">IN PROGRESS (@Model.Tasks.Where(t => t.StatusId == 2 && t.UserId == Model.User.Id).Count())</th>
+                <th width="33%" class="h2 text-center border-white border-top-0 coltitle">DONE (@Model.Tasks.Where(t => t.StatusId == 3 && t.UserId == Model.User.Id).Count())</th>
             </tr>
         </thead>
         <tbody>
@@ -30,9 +40,10 @@ else
                 <td>
                     @foreach (var item in Model.Tasks.Where(t => t.StatusId == 1 && t.UserId == Model.User.Id))
                     {
-                        <div class="card" width="33%">
+                        <div class="card border bodyground my-2" width="33%">
                             <div class="card-body">
                                 <h5 class="card-title">@item.TaskName</h5>
+                                <hr>
                                 <p class="card-text">@item.TaskDescription</p>
                                 <a asp-controller="Board" asp-action="StartTask" asp-route-id="@item.Id" class="btn btn-primary">Start Task</a>
                             </div>
@@ -42,9 +53,10 @@ else
                 <td>
                     @foreach (var item in Model.Tasks.Where(t => t.StatusId == 2 && t.UserId == Model.User.Id))
                     {
-                        <div class="card" width="33%">
+                        <div class="card border bodyground inprogress my-2" width="33%">
                             <div class="card-body">
                                 <h5 class="card-title">@item.TaskName</h5>
+                                <hr>
                                 <p class="card-text">@item.TaskDescription</p>
                                 <a asp-controller="Board" asp-action="FinishTask" asp-route-id="@item.Id" class="btn btn-primary">Done</a>
                             </div>
@@ -54,9 +66,10 @@ else
                 <td>
                     @foreach (var item in Model.Tasks.Where(t => t.StatusId == 3 && t.UserId == Model.User.Id))
                     {
-                        <div class="card" width="33%">
+                        <div class="card border bodyground done my-2" width="33%">
                             <div class="card-body">
                                 <h5 class="card-title">@item.TaskName</h5>
+                                <hr>
                                 <p class="card-text">@item.TaskDescription</p>
                                 <a asp-controller="Board" asp-action="DeleteTask" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                             </div>

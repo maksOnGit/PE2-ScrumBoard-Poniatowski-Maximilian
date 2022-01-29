@@ -3,18 +3,17 @@
 }
 @model LoginViewModel
 
-
-<h1 class="display-4">Select User</h1>
+<h1 class="display-4 ink">Select User</h1>
 <form asp-controller="Board" asp-action="Login" method="post">
     <div class="form-group">
-        <label asp-for="UserId">User</label>
+        <label asp-for="UserId" class="labels">User</label>
         <select asp-for="UserId" asp-items="Model.Users" class="form-control">
-            <option value="">Select User</option>
+            <option value="" selected disabled hidden>@Html.Raw((Model.Users.Count() == 0) ? "U need to create a new user" : "Select User")</option>
         </select>
         <span asp-validation-for="UserId" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-primary">Login</button>
 </form>
-    <a asp-controller="User" asp-action="CreateUser">Not in the list ?</a>
+<a asp-controller="User" asp-action="CreateUser">Not in the list ?</a>
 
 
